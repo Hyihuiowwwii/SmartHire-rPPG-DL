@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <h1>Dashboard</h1>
+    <p>Welcome back, {{ user }}. Manage monitoring, dataset analysis, and results from one place.</p>
+</section>
+
+<section class="card-grid four-grid">
+    <div class="feature-card blue">
+        <h3>Real-time Monitor</h3>
+        <p>Live heart rate monitoring</p>
+        <a href="{{ url_for('monitor') }}" class="btn">Start</a>
+    </div>
+
+    <div class="feature-card green">
+        <h3>Dataset Analysis</h3>
+        <p>Validate model performance</p>
+        <a href="{{ url_for('dataset') }}" class="btn">Analyze</a>
+    </div>
+
+    <div class="feature-card cyan">
+        <h3>Model Info</h3>
+        <p>Technical details of pipeline</p>
+        <button class="btn">View</button>
+    </div>
+
+    <div class="feature-card yellow">
+        <h3>History</h3>
+        <p>Previous monitoring records</p>
+        <button class="btn">10 Records</button>
+    </div>
+</section>
+
+<section class="two-col">
+    <div class="panel">
+        <h2>Quick Actions</h2>
+        <div class="quick-actions">
+            <div class="mini-card">
+                <h3>Quick HR Check</h3>
+                <p>Take a quick heart rate measurement</p>
+                <a href="{{ url_for('monitor') }}" class="btn btn-primary">Start</a>
+            </div>
+
+            <div class="mini-card">
+                <h3>Run Analysis</h3>
+                <p>Validate model on dataset</p>
+                <a href="{{ url_for('dataset') }}" class="btn btn-success">Run</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h2>User Info</h2>
+        <div class="user-info">
+            <p><strong>Username:</strong> {{ user }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Member since:</strong> 2026-03-26</p>
+        </div>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Recent Analyses</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Results</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in history_data %}
+                <tr>
+                    <td>{{ item.type }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.result }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
