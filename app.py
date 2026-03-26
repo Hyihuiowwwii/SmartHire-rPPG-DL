@@ -1,7 +1,7 @@
 import cv2
 from src.face_detection import FaceDetector
 
-video_path = "sample_data/test_video.mp4"
+video_path = "sample_data/WIN_20260326_20_24_00_Pro.mp4"
 
 cap = cv2.VideoCapture(video_path)
 detector = FaceDetector()
