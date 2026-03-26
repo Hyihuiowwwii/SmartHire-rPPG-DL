@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} | HeartRate Pro</title>
+    <title>{{ title if title else "HeartRate Pro" }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -13,8 +12,8 @@
             <a href="{{ url_for('dashboard') if session.get('user') else url_for('login') }}" class="brand">
                 ❤ HeartRate Pro
             </a>
+
             {% if session.get('user') %}
-                <a href="{{ url_for('dashboard') }}">Home</a>
                 <a href="{{ url_for('dashboard') }}">Dashboard</a>
                 <a href="{{ url_for('monitor') }}">Real-time Monitor</a>
                 <a href="{{ url_for('dataset') }}">Dataset Analysis</a>
@@ -38,7 +37,6 @@
                 {% for category, message in messages %}
                     <div class="flash flash-{{ category }}">
                         <span>{{ message }}</span>
-                        <button class="flash-close" onclick="this.parentElement.style.display='none'">×</button>
                     </div>
                 {% endfor %}
             {% endif %}
@@ -46,16 +44,5 @@
 
         {% block content %}{% endblock %}
     </main>
-
-    <footer class="footer">
-        <div>
-            <h3>HeartRate Pro</h3>
-            <p>Advanced remote heart rate monitoring using rPPG technology</p>
-        </div>
-        <div class="footer-right">
-            <p>© 2026 HeartRate Pro. All rights reserved.</p>
-            <p>Powered by Flask & rPPG Technology</p>
-        </div>
-    </footer>
 </body>
 </html>
