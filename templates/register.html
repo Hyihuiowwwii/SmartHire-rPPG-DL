@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>Create Account</h2>
+            <p>Register for HeartRate Pro</p>
+        </div>
+
+        <form method="POST" class="auth-form">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Choose username" required>
+
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Create password" required>
+
+            <button type="submit" class="btn btn-primary full-btn">Register</button>
+        </form>
+
+        <p class="auth-switch">
+            Already have an account?
+            <a href="{{ url_for('login') }}">Login here</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
