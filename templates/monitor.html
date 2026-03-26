@@ -11,7 +11,9 @@
         <div class="panel-title blue-title">Live Camera Feed</div>
 
         <div class="camera-box">
-            <div class="camera-placeholder">
+            <video id="webcam" autoplay playsinline style="display:none; width:100%; max-height:420px; border-radius:16px;"></video>
+
+            <div class="camera-placeholder" id="cameraPlaceholder">
                 <h3>Camera Feed Will Appear Here</h3>
                 <p>Click "Start Monitoring" to begin real-time heart rate analysis</p>
                 <div class="loader"></div>
@@ -19,8 +21,8 @@
         </div>
 
         <div class="monitor-buttons">
-            <button class="btn btn-success">▶ Start Monitoring</button>
-            <button class="btn btn-danger">■ Stop Monitoring</button>
+            <button class="btn btn-success" id="startBtn">▶ Start Monitoring</button>
+            <button class="btn btn-danger" id="stopBtn">■ Stop Monitoring</button>
         </div>
 
         <div class="instructions">
@@ -38,33 +40,37 @@
     <div class="side-stats">
         <div class="stat-card">
             <div class="panel-title green-title">Heart Rate</div>
-            <div class="bpm-number">68</div>
+            <div class="bpm-number">{{ monitor_data.current_bpm }}</div>
             <p>Beats Per Minute (BPM)</p>
 
             <div class="triple-stats">
-                <div><strong>41</strong><span>Min</span></div>
-                <div><strong>63</strong><span>Avg</span></div>
-                <div><strong>86</strong><span>Max</span></div>
+                <div><strong>{{ monitor_data.min_bpm }}</strong><span>Min</span></div>
+                <div><strong>{{ monitor_data.avg_bpm }}</strong><span>Avg</span></div>
+                <div><strong>{{ monitor_data.max_bpm }}</strong><span>Max</span></div>
             </div>
 
             <div class="progress-block">
                 <label>Signal Quality</label>
-                <div class="progress"><div class="progress-fill" style="width:100%"></div></div>
-                <small>Signal Quality: 100%</small>
+                <div class="progress">
+                    <div class="progress-fill" style="width:{{ monitor_data.signal_quality }}%"></div>
+                </div>
+                <small>Signal Quality: {{ monitor_data.signal_quality }}%</small>
             </div>
 
             <div class="progress-block">
                 <label>Buffer Status</label>
-                <div class="progress cyan"><div class="progress-fill" style="width:100%"></div></div>
-                <small>Collecting data: 150/150 frames</small>
+                <div class="progress cyan">
+                    <div class="progress-fill" style="width:100%"></div>
+                </div>
+                <small>Collecting data: {{ monitor_data.buffer_status }}</small>
             </div>
 
-            <div class="status-box success-status">Normal heart rate</div>
+            <div class="status-box success-status">{{ monitor_data.status_text }}</div>
         </div>
 
         <div class="panel">
             <div class="panel-title cyan-title">Real-time Data</div>
-            <div class="console-box">
+            <div class="console-box" id="consoleBox">
                 <p>>> System Ready >> Heart Rate Monitor</p>
                 <p>>> Waiting for camera access...</p>
                 <p>>> rPPG model initialized</p>
