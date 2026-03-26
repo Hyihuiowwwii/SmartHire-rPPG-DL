@@ -81,7 +81,11 @@
 </section>
 
 <script>
+alert("monitor page script loaded");
+
 document.addEventListener("DOMContentLoaded", function () {
+    alert("DOM loaded");
+
     let videoStream = null;
 
     const startBtn = document.getElementById("startBtn");
@@ -89,6 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const webcam = document.getElementById("webcam");
     const placeholder = document.getElementById("cameraPlaceholder");
     const consoleBox = document.getElementById("consoleBox");
+
+    if (startBtn) {
+        alert("start button found");
+    } else {
+        alert("start button NOT found");
+    }
 
     function addConsoleMessage(message) {
         const p = document.createElement("p");
@@ -98,6 +108,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     startBtn.addEventListener("click", async function () {
+        alert("start clicked");
+
         try {
             addConsoleMessage("Requesting webcam access...");
 
@@ -141,4 +153,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 {% endblock %}
+     
 
