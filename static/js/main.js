@@ -1,4 +1,4 @@
-console.log("HeartRate Pro UI loaded successfully");
+alert("main.js loaded");
 
 let videoStream = null;
 
@@ -14,15 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
             const p = document.createElement("p");
             p.textContent = ">>> " + message;
             consoleBox.appendChild(p);
-            consoleBox.scrollTop = consoleBox.scrollHeight;
         }
     }
 
     if (startBtn) {
         startBtn.addEventListener("click", async function () {
-            try {
-                addConsoleMessage("Requesting webcam access...");
+            alert("Start button clicked");
 
+            try {
                 videoStream = await navigator.mediaDevices.getUserMedia({
                     video: true,
                     audio: false
@@ -33,13 +32,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 placeholder.style.display = "none";
 
                 addConsoleMessage("Webcam started successfully.");
-                addConsoleMessage("Live monitoring session started.");
             } catch (error) {
-                console.error("Camera access error:", error);
+                console.error(error);
+                alert("Camera access failed");
                 addConsoleMessage("Failed to access webcam.");
-                alert("Could not access webcam. Please allow camera permission.");
             }
         });
+    } else {
+        alert("startBtn not found");
     }
 
     if (stopBtn) {
@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 placeholder.style.display = "block";
 
                 addConsoleMessage("Webcam stopped.");
-                addConsoleMessage("Monitoring stopped.");
             }
         });
     }
