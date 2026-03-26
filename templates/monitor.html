@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <h1>Real-time Heart Rate Monitoring</h1>
+    <p>Live camera feed and estimated BPM using facial ROI analysis.</p>
+</section>
+
+<section class="monitor-layout">
+    <div class="panel">
+        <div class="panel-title blue-title">Live Camera Feed</div>
+
+        <div class="camera-box">
+            <div class="camera-placeholder">
+                <h3>Camera Feed Will Appear Here</h3>
+                <p>Click "Start Monitoring" to begin real-time heart rate analysis</p>
+                <div class="loader"></div>
+            </div>
+        </div>
+
+        <div class="monitor-buttons">
+            <button class="btn btn-success">▶ Start Monitoring</button>
+            <button class="btn btn-danger">■ Stop Monitoring</button>
+        </div>
+
+        <div class="instructions">
+            <h3>Instructions</h3>
+            <ul>
+                <li>Ensure good lighting on your face</li>
+                <li>Keep your face steady and centered in the frame</li>
+                <li>Maintain a distance of 1–2 feet from the camera</li>
+                <li>Avoid sudden movements during measurement</li>
+                <li>Green box = face detection, blue box = ROI</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="side-stats">
+        <div class="stat-card">
+            <div class="panel-title green-title">Heart Rate</div>
+            <div class="bpm-number">68</div>
+            <p>Beats Per Minute (BPM)</p>
+
+            <div class="triple-stats">
+                <div><strong>41</strong><span>Min</span></div>
+                <div><strong>63</strong><span>Avg</span></div>
+                <div><strong>86</strong><span>Max</span></div>
+            </div>
+
+            <div class="progress-block">
+                <label>Signal Quality</label>
+                <div class="progress"><div class="progress-fill" style="width:100%"></div></div>
+                <small>Signal Quality: 100%</small>
+            </div>
+
+            <div class="progress-block">
+                <label>Buffer Status</label>
+                <div class="progress cyan"><div class="progress-fill" style="width:100%"></div></div>
+                <small>Collecting data: 150/150 frames</small>
+            </div>
+
+            <div class="status-box success-status">Normal heart rate</div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title cyan-title">Real-time Data</div>
+            <div class="console-box">
+                <p>>> System Ready >> Heart Rate Monitor</p>
+                <p>>> Waiting for camera access...</p>
+                <p>>> rPPG model initialized</p>
+                <p>>> Signal buffer ready</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
