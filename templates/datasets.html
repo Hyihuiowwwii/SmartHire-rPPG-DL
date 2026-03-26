@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <h1>UBFC Dataset Analysis</h1>
+    <p>Analyze heart rate data from UBFC dataset and compare with ground truth values.</p>
+</section>
+
+<section class="panel">
+    <div class="panel-title blue-title">Analysis Controls</div>
+    <div class="dataset-actions">
+        <button class="btn btn-success">▶ Run Dataset Analysis</button>
+        <button class="btn btn-outline">⟳ Refresh Results</button>
+        <div class="status-pill">Status: completed (100%)</div>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Analysis Progress</h2>
+    <div class="progress big-progress">
+        <div class="progress-fill striped" style="width:100%"></div>
+    </div>
+    <p class="center-text">Initializing analysis...</p>
+</section>
+
+<section class="summary-row">
+    <div class="summary-box">
+        <h3>7</h3>
+        <p>Total Subjects</p>
+    </div>
+    <div class="summary-box">
+        <h3>7</h3>
+        <p>Successful Analyses</p>
+    </div>
+    <div class="summary-box">
+        <h3>81.2%</h3>
+        <p>Average Accuracy</p>
+    </div>
+    <div class="summary-box">
+        <h3>15.1 BPM</h3>
+        <p>Average Error</p>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Summary Results</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>GT HR</th>
+                    <th>Est HR</th>
+                    <th>Error</th>
+                    <th>Accuracy</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in summary %}
+                <tr>
+                    <td>{{ row.subject }}</td>
+                    <td>{{ row.gt_hr }}</td>
+                    <td>{{ row.est_hr }}</td>
+                    <td>{{ row.error }}</td>
+                    <td>{{ row.accuracy }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
